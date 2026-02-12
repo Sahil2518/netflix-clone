@@ -65,9 +65,82 @@
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const page = urlParams.get('page');
-        if (page) {
-            document.getElementById('page-title').textContent = page;
-            document.title = `Netflix - ${page}`;
+
+        const contentData = {
+            'Investor Relations': {
+                title: 'Investor Relations',
+                body: '<p>VIT-AP University is committed to transparency and growth. Here you can find our annual reports, financial statements, and information for our stakeholders.</p><p>We are dedicated to providing world-class education and fostering innovation.</p>'
+            },
+            'Jobs': {
+                title: 'Jobs at VIT-AP',
+                body: '<p>Join our team! We are looking for passionate individuals to help us shape the future of education.</p><p>Explore current openings for faculty, research, and administrative positions.</p>'
+            },
+            'Ways to Watch': {
+                title: 'Ways to Watch',
+                body: '<p>Watch Netflix on your smartphone, tablet, Smart TV, laptop, or streaming device, all for one fixed monthly fee.</p><p>Plans range from ₹ 149 to ₹ 649 a month. No extra costs, no contracts.</p>'
+            },
+            'Terms of Use': {
+                title: 'Terms of Use',
+                body: '<p>These Terms of Use govern your use of the Netflix service. By using our service, you agree to these terms.</p><p>Please read them carefully to understand your rights and responsibilities.</p>'
+            },
+            'Help Centre': {
+                title: 'Help Centre',
+                body: '<p>Need help? Find answers to common questions about billing, account access, technical issues, and more.</p><p>Contact our support team if you cannot find what you are looking for.</p>'
+            },
+            'Account': {
+                title: 'Your Account',
+                body: '<p>Manage your account details, membership plan, and profile settings here.</p><p>Update your email, password, or payment information securely.</p>'
+            },
+            'Speed Test': {
+                title: 'Internet Speed Test',
+                body: '<p>Check your internet connection speed to ensure you can stream Netflix in high definition.</p><p>To check your speed, visit <a href="https://fast.com" target="_blank" style="color: #e50914;">Fast.com</a>.</p>'
+            },
+            'Legal Notices': {
+                title: 'Legal Notices',
+                body: '<p>Review our legal notices, including copyright information and trademark usage guidelines.</p>'
+            },
+            'Media Centre': {
+                title: 'Media Centre',
+                body: '<p>Access press releases, brand assets, and media kits for VIT-AP and Netflix.</p>'
+            },
+            'Privacy': {
+                title: 'Privacy Policy',
+                body: '<p>Your privacy is important to us. Learn how we collect, use, and protect your personal information.</p>'
+            },
+            'Cookie Preferences': {
+                title: 'Cookie Preferences',
+                body: '<p>Manage your cookie settings to control how we use data to personalize your experience.</p>'
+            },
+            'Corporate': {
+                title: 'Corporate Information',
+                body: '<p>Learn more about our company history, leadership, and mission values.</p>'
+            },
+            'Contact Us': {
+                title: 'Contact Us',
+                body: '<p>Have questions? Reach out to us via phone or email.</p><p>Call: 000-800-919-1694</p><p>Email: support@vitap.ac.in</p>'
+            },
+            'Only on Netflix': {
+                title: 'Only on Netflix',
+                body: '<p>Discover exclusive Netflix Originals that you cannot find anywhere else.</p><p>From award-winning series to blockbuster movies, enjoy unlimited entertainment.</p>'
+            }
+        };
+
+        if (page && contentData[page]) {
+            document.getElementById('page-title').textContent = contentData[page].title;
+            const container = document.querySelector('.content-container');
+            // Remove placeholder paragraphs
+            const paragraphs = container.querySelectorAll('p');
+            paragraphs.forEach(p => p.remove());
+
+            // Insert new content
+            const contentDiv = document.createElement('div');
+            contentDiv.innerHTML = contentData[page].body;
+            container.insertBefore(contentDiv, container.querySelector('.back-link'));
+
+            document.title = `Netflix - ${contentData[page].title}`;
+        } else {
+            document.getElementById('page-title').textContent = page || 'Content Not Found';
+            document.title = `Netflix - ${page || 'Not Found'}`;
         }
     </script>
 </body>
