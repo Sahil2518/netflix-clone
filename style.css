@@ -29,12 +29,36 @@ body {
 }
 
 nav {
-    max-width: 60vw;
+    max-width: 100%;
+    /* Full width for sticky bar */
     justify-content: space-between;
-    margin: auto;
     display: flex;
     align-items: center;
     height: 100px;
+    padding: 0 10%;
+    /* Move margin to padding for sticky centering */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    /* Optional: Add a class via JS to make it solid black on scroll if desired, 
+       but for now sticky with gradient/transparent is standard Netflix style until scrolled. 
+       To ensure visibility, we can give it a solid background or keep it transparent depending on hero.
+       Let's create a solid background for sticky by default for better UX on this clone. */
+    background-color: black;
+    transition: background-color 0.3s;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-container img {
+    width: 150px;
+    /* Adjusted for the new image aspect ratio */
+    height: auto;
+    object-fit: contain;
 }
 
 nav img {
@@ -44,9 +68,36 @@ nav img {
     z-index: 10;
 }
 
-nav button {
-    position: relative;
+.nav-actions {
+    display: flex;
+    gap: 20px;
+    align-items: center;
     z-index: 10;
+}
+
+.lang-select-container {
+    position: relative;
+}
+
+.lang-select {
+    padding: 5px 25px 5px 10px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 1px solid white;
+    color: white;
+    font-size: 16px;
+    border-radius: 4px;
+    appearance: none;
+    /* Remove default arrow */
+    cursor: pointer;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 7px top 50%;
+    background-size: 12px auto;
+}
+
+.lang-select:focus {
+    outline: none;
+    border-color: #e50914;
 }
 
 .hero {
@@ -187,25 +238,61 @@ section.first>div :nth-child(2) {
     padding: 34px;
 }
 
-.faqbox:hover {
-    background-color: #414141;
-    color: white;
+.faqbox {
+    transition: all 0.3s ease-out;
+    font-size: 24px;
+    display: flex;
+    flex-direction: column;
+    /* Changed to column to stack header and answer */
+    background-color: #2d2d2d;
+    padding: 24px;
+    max-width: 60vw;
+    margin: 10px auto;
+    /* Reduced margin for tighter look */
+    cursor: pointer;
+}
+
+.question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.faqbox .answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+    padding: 0;
+    /* Initially 0 padding */
+    font-size: 20px;
+    text-align: left;
+    border-top: 1px solid black;
+    /* Separate answer from question */
+    margin-top: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease-out, max-height 0.3s ease-out, margin-top 0.3s ease-out;
+}
+
+.faqbox.active .answer {
+    max-height: 300px;
+    /* Arbitrary large height */
+    padding: 20px 0 0 0;
+    opacity: 1;
+    margin-top: 20px;
 }
 
 .faqbox svg {
     filter: invert(1);
+    transition: transform 0.3s ease;
 }
 
-.faqbox {
-    transition: all 1s ease-out;
-    font-size: 24px;
-    display: flex;
-    justify-content: space-between;
-    background-color: #2d2d2d;
-    padding: 24px;
-    max-width: 60vw;
-    margin: 34px auto;
-    cursor: pointer;
+.faqbox.active svg {
+    transform: rotate(45deg);
+}
+
+.faqbox:hover {
+    background-color: #414141;
 }
 
 footer {
@@ -230,7 +317,7 @@ footer .questions {
 
 @media screen and (max-width: 1300px) {
 
-    nav{
+    nav {
         max-width: 90vw;
     }
 
@@ -276,7 +363,7 @@ footer .questions {
         padding: 75px 0;
     }
 
-    .footer-item{
+    .footer-item {
         align-items: center;
     }
 

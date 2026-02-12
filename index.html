@@ -10,23 +10,38 @@
 
 <body>
 
-    <div class="main">
-        <nav>
-            <span><img width="53" src="assets/images/logo.svg" alt=""></span>
-            <div>
-                <button class="btn">English</button>
-                <button class="btn btn-red-sm">Sign In</button>
+    <nav>
+        <div class="logo-container">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjCBwdqb-ZQG1tCIopwWW63bzCjSNbMzRrng&s"
+                alt="VIT-AP Logo" style="height: 50px; width: auto;">
+        </div>
+        <div class="nav-actions">
+            <div class="lang-select-container">
+                <select class="lang-select btn">
+                    <option value="en">English</option>
+                    <option value="hi">हिंदी</option>
+                    <option value="te">తెలుగు</option>
+                    <option value="ta">தமிழ்</option>
+                </select>
             </div>
-        </nav>
+            <a href="signin.html" class="btn btn-red-sm" data-i18n="signin">Sign In</a>
+        </div>
+    </nav>
+
+    <div class="main">
         <div class="box">
         </div>
         <div class="hero">
-            <span>Enjoy big movies, hit series and more from ₹ 149.</span>
-            <span>Join today. Cancel anytime.</span>
-            <span>Ready to watch? Enter your email to create or restart your membership.</span>
+            <span data-i18n="hero_title">Enjoy big movies, hit series and more from ₹ 149.</span>
+            <span data-i18n="hero_subtitle">Join today. Cancel anytime.</span>
+            <span data-i18n="hero_cta">Ready to watch? Enter your email to create or restart your membership.</span>
             <div class="hero-buttons">
-                <input type="text" placeholder="Email Address">
-                <button class="btn btn-red">Get Started &gt;</button>
+                <form action="signup.html"
+                    style="display: flex; gap: 10px; align-items: center; justify-content: center; width: 100%;">
+                    <input type="email" name="email" placeholder="Email Address" required
+                        data-i18n-placeholder="email_placeholder">
+                    <button type="submit" class="btn btn-red" data-i18n="get_started">Get Started &gt;</button>
+                </form>
             </div>
         </div>
 
@@ -36,8 +51,9 @@
 
     <section class="first">
         <div>
-            <span>Enjoy on your TV</span>
-            <span>Watch on smart TVs, PlayStation, Xbox, Chromecast, Apple TV, Blu-ray players and more.</span>
+            <span data-i18n="sec_tv_title">Enjoy on your TV</span>
+            <span data-i18n="sec_tv_text">Watch on smart TVs, PlayStation, Xbox, Chromecast, Apple TV, Blu-ray players
+                and more.</span>
         </div>
 
         <div class="secImg">
@@ -55,16 +71,17 @@
 
         </div>
         <div>
-            <span>Download your shows to watch offline</span>
-            <span>Save your favourites easily and always have something to watch.</span>
+            <span data-i18n="sec_download_title">Download your shows to watch offline</span>
+            <span data-i18n="sec_download_text">Save your favourites easily and always have something to watch.</span>
         </div>
     </section>
 
     <div class="separation"></div>
     <section class="first third">
         <div>
-            <span>Watch everywhere</span>
-            <span>Stream unlimited movies and TV shows on your phone, tablet, laptop, and TV.</span>
+            <span data-i18n="sec_watch_title">Watch everywhere</span>
+            <span data-i18n="sec_watch_text">Stream unlimited movies and TV shows on your phone, tablet, laptop, and
+                TV.</span>
         </div>
 
         <div class="secImg">
@@ -84,8 +101,9 @@
 
         </div>
         <div>
-            <span>Create profiles for kids</span>
-            <span>Send children on adventures with their favourite characters in a space made just for them—free with
+            <span data-i18n="sec_kids_title">Create profiles for kids</span>
+            <span data-i18n="sec_kids_text">Send children on adventures with their favourite characters in a space made
+                just for them—free with
                 your membership.</span>
         </div>
     </section>
@@ -95,36 +113,68 @@
     <section class="faq">
         <h2>Frequently Asked Questions</h2>
         <div class="faqbox">
-            <span>What is NetFlix</span>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 4V20" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M4 12H20" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-
+            <div class="question-header">
+                <span>What is NetFlix</span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 4V20" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M4 12H20" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </div>
+            <div class="answer">
+                <p>Netflix is a streaming service that offers a wide variety of award-winning TV shows, movies, anime,
+                    documentaries, and more on thousands of internet-connected devices.</p>
+                <p>You can watch as much as you want, whenever you want without a single commercial – all for one low
+                    monthly price. There's always something new to discover and new TV shows and movies are added every
+                    week!</p>
+            </div>
         </div>
         <div class="faqbox">
-            <span>How much does Netflix cost?</span>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 4V20" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M4 12H20" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-
+            <div class="question-header">
+                <span>How much does Netflix cost?</span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 4V20" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M4 12H20" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </div>
+            <div class="answer">
+                <p>Watch Netflix on your smartphone, tablet, Smart TV, laptop, or streaming device, all for one fixed
+                    monthly fee. Plans range from ₹ 149 to ₹ 649 a month. No extra costs, no contracts.</p>
+            </div>
         </div>
         <div class="faqbox">
-            <span>What can I watch on Netflix?</span>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 4V20" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M4 12H20" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-
+            <div class="question-header">
+                <span>What can I watch on Netflix?</span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 4V20" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M4 12H20" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </div>
+            <div class="answer">
+                <p>Netflix has an extensive library of feature films, documentaries, TV shows, anime, award-winning
+                    Netflix originals, and more. Watch as much as you want, anytime you want.</p>
+            </div>
         </div>
         <div class="faqbox">
-            <span>Where can I watch?</span>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 4V20" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M4 12H20" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-
+            <div class="question-header">
+                <span>Where can I watch?</span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 4V20" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M4 12H20" stroke="#141B34" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </div>
+            <div class="answer">
+                <p>Watch anywhere, anytime. Sign in with your Netflix account to watch instantly on the web at
+                    netflix.com from your personal computer or on any internet-connected device that offers the Netflix
+                    app, including smart TVs, smartphones, tablets, streaming media players and game consoles.</p>
+            </div>
         </div>
     </section>
     <div class="separation"></div>
@@ -134,34 +184,39 @@
             Questions? Call 000-800-919-1694
         </div>
         <div class="footer">
-            <div class="footer-item"> 
-                <a href="faq">Investor Relations</a>
-                <a href="faq">Jobs</a>
-                <a href="faq">Ways to Watch</a>
-                <a href="faq">Terms of Use</a>
-            </div>
-
-            <div class="footer-item"> 
-                <a href="faq">Help Centre</a>
-                <a href="faq">Account</a>
-                <a href="faq">Speed Test</a>
-                <a href="faq">Legal Notices</a>
-            </div>
             <div class="footer-item">
-                <a href="faq">Media Centre</a>
-                <a href="faq">Privacy</a>
-                <a href="faq">Cookie Preferences</a> 
-                <a href="faq">Corporate</a>
+                <a href="content.html?page=Investor Relations">Investor Relations</a>
+                <a href="content.html?page=Jobs">Jobs</a>
+                <a href="content.html?page=Ways to Watch">Ways to Watch</a>
+                <a href="content.html?page=Terms of Use">Terms of Use</a>
             </div>
 
             <div class="footer-item">
-                <a href="faq">Contact Us</a>
-                <a href="faq">Speed Test</a> 
-                <a href="faq">Legal Notices</a> 
-                <a href="faq">Only on Netflix</a>
+                <a href="content.html?page=Help Centre">Help Centre</a>
+                <a href="content.html?page=Account">Account</a>
+                <a href="content.html?page=Speed Test">Speed Test</a>
+                <a href="content.html?page=Legal Notices">Legal Notices</a>
+            </div>
+            <div class="footer-item">
+                <a href="content.html?page=Media Centre">Media Centre</a>
+                <a href="content.html?page=Privacy">Privacy</a>
+                <a href="content.html?page=Cookie Preferences">Cookie Preferences</a>
+                <a href="content.html?page=Corporate">Corporate</a>
+            </div>
+
+            <div class="footer-item">
+                <a href="content.html?page=Contact Us">Contact Us</a>
+                <a href="content.html?page=Speed Test">Speed Test</a>
+                <a href="content.html?page=Legal Notices">Legal Notices</a>
+                <a href="content.html?page=Only on Netflix">Only on Netflix</a>
             </div>
         </div>
+        <div class="footer-logo" style="margin-top: 20px;">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjCBwdqb-ZQG1tCIopwWW63bzCjSNbMzRrng&s"
+                alt="VIT-AP Logo" style="height: 60px; width: auto;">
+        </div>
     </footer>
+    <script src="script.js"></script>
 </body>
 
 </html>

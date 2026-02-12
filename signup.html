@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix - Sign Up</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: white;
+            /* Different from dark theme for contrast */
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        nav {
+            border-bottom: 1px solid #e6e6e6;
+            height: 90px;
+            background: white;
+        }
+
+        .signup-container {
+            max-width: 440px;
+            margin: auto;
+            padding: 20px 0;
+            text-align: left;
+        }
+
+        .signup-container h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .signup-container p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .form-input {
+            width: 100%;
+            border: 1px solid #8c8c8c;
+            border-radius: 2px;
+            height: 60px;
+            /* Taller inputs */
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background-color: #e50914;
+            color: white;
+            font-weight: 400;
+            font-size: 24px;
+            border-radius: 4px;
+            border: none;
+            padding: 16px;
+            cursor: pointer;
+            margin-top: 24px;
+        }
+
+        @media (max-width: 500px) {
+            .signup-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo-container">
+            <a href="index.html">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjCBwdqb-ZQG1tCIopwWW63bzCjSNbMzRrng&s"
+                    alt="VIT-AP Logo" style="height: 60px; width: auto;">
+            </a>
+        </div>
+        <a href="signin.html"
+            style="text-decoration: none; color: #333; font-weight: 700; font-size: 19px; margin-right: 20px;">Sign
+            In</a>
+    </nav>
+    <div class="signup-container">
+        <p style="text-transform: uppercase;">STEP 1 OF 3</p>
+        <h1>Create a password to start your membership</h1>
+        <p>Just a few more steps and you're done!<br>We hate paperwork, too.</p>
+        <form action="index.html">
+            <input type="email" id="email" placeholder="Email" class="form-input" required>
+            <input type="password" placeholder="Add a password" class="form-input" required>
+            <button type="submit" class="btn-submit">Next</button>
+        </form>
+    </div>
+    <script>
+        // Pre-fill email from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const email = urlParams.get('email');
+        if (email) {
+            document.getElementById('email').value = email;
+        }
+    </script>
+</body>
+
+</html>
