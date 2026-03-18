@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix - Browse</title>
+    <meta name="referrer" content="no-referrer">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .browse-header {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+
+        .browse-main {
+            padding-top: 100px;
+            background-color: #141414;
+            min-height: 100vh;
+            color: white;
+        }
+
+        .hero-banner {
+            height: 80vh;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            padding: 0 4%;
+            position: relative;
+            margin-bottom: -150px;
+        }
+
+        .hero-banner::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(to top, #141414, transparent);
+        }
+
+        .hero-content {
+            z-index: 10;
+            max-width: 600px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .movie-section {
+            padding: 2rem 4%;
+            position: relative;
+            z-index: 20;
+        }
+
+        .section-title {
+            font-size: 1.4vw;
+            color: #e5e5e5;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .movie-card {
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .movie-card:hover {
+            transform: scale(1.05);
+            z-index: 30;
+        }
+
+        .movie-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .movie-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 10px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .movie-card:hover .movie-info {
+            opacity: 1;
+        }
+
+        .movie-title {
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .movie-rating {
+            color: #46d369;
+            font-size: 0.8rem;
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 3rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+        }
+
+        .movie-card:hover .play-overlay {
+            opacity: 1;
+        }
+
+        #player-wrapper {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 1000px;
+            aspect-ratio: 16/9;
+        }
+
+        #player-wrapper iframe {
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-modal video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .close-video {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 2100;
+            background: rgba(0, 0, 0, 0.5);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="browse-header">
+        <div class="logo-container">
+            <a href="index.html">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjCBwdqb-ZQG1tCIopwWW63bzCjSNbMzRrng&s"
+                    alt="VIT-AP Logo">
+            </a>
+        </div>
+        <div class="nav-actions">
+            <button class="btn" id="logout-btn">Log Out</button>
+        </div>
+    </nav>
+
+    <main class="browse-main">
+        <section id="hero" class="hero-banner"
+            style="background-image: url('https://image.tmdb.org/t/p/original/8ib9S3v7LZS9uS0SsyZ6A0Oc9Ym.jpg');">
+            <div class="hero-content">
+                <h1 id="hero-title">Inception</h1>
+                <p id="hero-overview">A thief who steals corporate secrets through the use of dream-sharing
+                    technology...</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-white">Play</button>
+                    <button class="btn btn-gray">More Info</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="movie-section">
+            <h2 class="section-title">Trending Now</h2>
+            <div id="movie-grid" class="movie-grid">
+                <!-- Movies will be injected here -->
+            </div>
+        </section>
+    </main>
+
+    <div id="video-modal" class="video-modal">
+        <button class="close-video" id="close-video">&times;</button>
+        <div id="player-wrapper">
+            <div id="yt-player-div"></div>
+        </div>
+    </div>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        let ytPlayer = null;
+        let ytReady = false;
+        let pendingKey = null;
+
+        window.onYouTubeIframeAPIReady = function () {
+            ytPlayer = new YT.Player('yt-player-div', {
+                height: '100%',
+                width: '100%',
+                videoId: '',
+                playerVars: {
+                    autoplay: 0,
+                    rel: 0,
+                    modestbranding: 1,
+                    playsinline: 1,
+                    enablejsapi: 1
+                },
+                events: {
+                    onReady: function () {
+                        ytReady = true;
+                        if (pendingKey) {
+                            ytPlayer.loadVideoById(pendingKey);
+                            pendingKey = null;
+                        }
+                    }
+                }
+            });
+        };
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const movieGrid = document.getElementById('movie-grid');
+            const videoModal = document.getElementById('video-modal');
+            const closeVideo = document.getElementById('close-video');
+
+            const openPlayer = (trailerKey) => {
+                const key = trailerKey || 'YoHD9XEInc0';
+                videoModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+                if (ytReady && ytPlayer) {
+                    ytPlayer.loadVideoById(key);
+                } else {
+                    pendingKey = key;
+                    videoModal.style.display = 'flex';
+                }
+            };
+
+            const stopPlayer = () => {
+                videoModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                if (ytPlayer && ytReady) ytPlayer.stopVideo();
+            };
+
+            closeVideo.addEventListener('click', stopPlayer);
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') stopPlayer(); });
+
+            try {
+                const response = await fetch('/api/movies');
+                const movies = await response.json();
+
+                if (movies && movies.length > 0) {
+                    const hero = movies[0];
+                    document.getElementById('hero').style.backgroundImage = `url(${hero.poster})`;
+                    document.getElementById('hero-title').textContent = hero.title;
+                    document.getElementById('hero-overview').textContent = hero.overview;
+
+                    const heroPlayBtn = document.querySelector('.btn-white');
+                    if (heroPlayBtn) {
+                        heroPlayBtn.addEventListener('click', () => openPlayer(hero.trailer));
+                    }
+
+                    movieGrid.innerHTML = movies.map(movie => `
+                        <div class="movie-card" onclick="window.dispatchEvent(new CustomEvent('play-movie', {detail: '${movie.trailer}'}))">
+                            <img src="${movie.poster}" alt="${movie.title}">
+                            <div class="play-overlay">&#9654;</div>
+                            <div class="movie-info">
+                                <div class="movie-title">${movie.title}</div>
+                                <div class="movie-rating">&#9733; ${movie.rating}</div>
+                            </div>
+                        </div>
+                    `).join('');
+                } else {
+                    movieGrid.innerHTML = '<p style="color:white;">No movies found. Please seed the database.</p>';
+                }
+            } catch (error) {
+                console.error('Error fetching movies:', error);
+                movieGrid.innerHTML = '<p style="color:white;">Error loading movies.</p>';
+            }
+
+            window.addEventListener('play-movie', (e) => openPlayer(e.detail));
+
+            document.getElementById('logout-btn').addEventListener('click', () => {
+                window.location.href = 'index.html';
+            });
+        });
+    </script>
+</body>
+
+</html>
