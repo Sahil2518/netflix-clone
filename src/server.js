@@ -23,12 +23,11 @@ app.use((err, req, res, next) => {
     res.status(500).json({ error: 'Internal Server Error' });
 });
 
-if (process.env.NODE_ENV !== 'production') {
-    app.listen(PORT, async () => {
-        await initDb();
-        console.log(`Server running on port ${PORT}`);
-    });
-}
+app.listen(PORT, async () => {
+    await initDb();
+    console.log(`Server running on port ${PORT}`);
+});
 
 // Export for Vercel serverless function
 module.exports = app;
+

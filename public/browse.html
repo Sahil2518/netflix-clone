@@ -192,6 +192,7 @@
             border-radius: 50%;
         }
     </style>
+    <script src="config.js"></script>
 </head>
 
 <body>
@@ -293,7 +294,7 @@
             document.addEventListener('keydown', (e) => { if (e.key === 'Escape') stopPlayer(); });
 
             try {
-                const response = await fetch('/api/movies');
+                const response = await fetch(`${API_BASE_URL}/api/movies`);
                 const movies = await response.json();
 
                 if (movies && movies.length > 0) {

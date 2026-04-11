@@ -71,6 +71,7 @@
             }
         }
     </style>
+    <script src="config.js"></script>
 </head>
 
 <body>
@@ -110,7 +111,7 @@
             const password = document.getElementById('password').value;
 
             try {
-                const response = await fetch('/api/auth/signup', {
+                const response = await fetch(`${API_BASE_URL}/api/auth/signup`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, password })
